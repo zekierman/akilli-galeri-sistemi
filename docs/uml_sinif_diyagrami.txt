@@ -1,0 +1,371 @@
+classDiagram
+    direction TB
+
+    %% ==================== INTERFACES ====================
+    class Aranabilir {
+        <<interface>>
+        +ara(String kriter) List~Object~
+    }
+
+    class Raporlanabilir {
+        <<interface>>
+        +raporOlustur() String
+        +istatistikGetir() Map~String, Object~
+    }
+
+    class Karsilastirabilir {
+        <<interface>>
+        +karsilastir(Object diger) int
+    }
+
+    %% ==================== ENUM ====================
+    class AracDurumu {
+        <<enumeration>>
+        SATISTA
+        SATILDI
+        REZERVE
+        SERVISTE
+    }
+
+    class YakitTipi {
+        <<enumeration>>
+        BENZIN
+        DIZEL
+        LPG
+        ELEKTRIK
+        HIBRIT
+    }
+
+    class VitesTipi {
+        <<enumeration>>
+        MANUEL
+        OTOMATIK
+        YARI_OTOMATIK
+    }
+
+    class HasarSeviyesi {
+        <<enumeration>>
+        HASARSIZ
+        BOYALI
+        DEGISEN
+        AGIR_HASARLI
+    }
+
+    %% ==================== ABSTRACT CLASS: ARAC ====================
+    class Arac {
+        <<abstract>>
+        #String aracId
+        #String marka
+        #String model
+        #int yil
+        #double km
+        #YakitTipi yakitTipi
+        #VitesTipi vitesTipi
+        #String renk
+        #String plakaNo
+        #String sasiNo
+        #double alisFiyati
+        #double satisFiyati
+        #AracDurumu durum
+        #LocalDate eklenmeTarihi
+        +getAracBilgisi() String
+        +fiyatHesapla()* double
+        +aracTipiGetir()* String
+        +toString() String
+    }
+
+    %% ==================== CONCRETE VEHICLE CLASSES ====================
+    class Otomobil {
+        -String kasaTipi
+        -int kapıSayisi
+        -boolean sunroof
+        +fiyatHesapla() double
+        +aracTipiGetir() String
+    }
+
+    class SUV {
+        -boolean dortCeker
+        -double bagajHacmi
+        -boolean offRoad
+        +fiyatHesapla() double
+        +aracTipiGetir() String
+    }
+
+    class Ticari {
+        -double tasımaKapasitesi
+        -String ticariTip
+        -boolean frigorifik
+        +fiyatHesapla() double
+        +aracTipiGetir() String
+    }
+
+    class Motosiklet {
+        -int motorHacmi
+        -String motosikletTipi
+        -boolean ABS
+        +fiyatHesapla() double
+        +aracTipiGetir() String
+    }
+
+    %% ==================== PERSON CLASSES ====================
+    class Kisi {
+        <<abstract>>
+        #String ad
+        #String soyad
+        #String tcKimlik
+        #String telefon
+        #String email
+        #String adres
+        +getAdSoyad() String
+        +toString() String
+    }
+
+    class Musteri {
+        -String musteriId
+        -List~Arac~ ilgilendigiAraclar
+        -List~Satis~ satisGecmisi
+        -LocalDate kayitTarihi
+        -String notlar
+        +aracIlgiEkle(Arac arac) void
+        +getSatisGecmisi() List~Satis~
+    }
+
+    class Calisan {
+        -String calisanId
+        -String pozisyon
+        -double maas
+        -LocalDate iseBaslamaTarihi
+        -int toplamSatis
+        +satisYap() void
+        +performansHesapla() double
+    }
+
+    %% ==================== EKSPERTIZ ====================
+    class Ekspertiz {
+        -String ekspertizId
+        -Arac arac
+        -Calisan ekspertizYapan
+        -LocalDate ekspertizTarihi
+        -Map~String, HasarSeviyesi~ parcaDurumlari
+        -double ekspertizPuani
+        -String genelDegerlendirme
+        -List~String~ fotograflar
+        -boolean onaylandi
+        +parcaDurumuEkle(String parca, HasarSeviyesi seviye) void
+        +ekspertizPuaniHesapla() double
+        +raporOlustur() String
+    }
+
+    %% ==================== SATIS ====================
+    class Satis {
+        -String satisId
+        -Arac arac
+        -Musteri musteri
+        -Calisan satisYapan
+        -double satisFiyati
+        -double kar
+        -LocalDate satisTarihi
+        -String odemeSekli
+        -boolean faturaKesildi
+        +karHesapla() double
+        +faturaOlustur() String
+        +toString() String
+    }
+
+    %% ==================== SIGORTA & MUAYENE ====================
+    class SigortaBilgisi {
+        -String policeNo
+        -Arac arac
+        -String sigortaSirketi
+        -LocalDate baslangicTarihi
+        -LocalDate bitisTarihi
+        -double primTutari
+        -boolean aktif
+        +suresiDolduMu() boolean
+        +kalanGun() int
+    }
+
+    class MuayeneBilgisi {
+        -Arac arac
+        -LocalDate muayeneTarihi
+        -LocalDate sonrakiMuayeneTarihi
+        -boolean gectiMi
+        -String muayeneIstasyonu
+        -String notlar
+        +suresiDolduMu() boolean
+        +kalanGun() int
+    }
+
+    %% ==================== DATA STRUCTURES ====================
+    class AracListesi {
+        -Node~Arac~ bas
+        -Node~Arac~ son
+        -int boyut
+        +ekle(Arac arac) void
+        +sil(String aracId) boolean
+        +ara(String kriter) List~Arac~
+        +sirala(Comparator~Arac~ comparator) void
+        +filtrele(Predicate~Arac~ filtre) List~Arac~
+        +getBoyut() int
+        +iterator() Iterator~Arac~
+    }
+
+    class MusteriAgaci {
+        -TreeNode~Musteri~ kok
+        -int boyut
+        +ekle(Musteri musteri) void
+        +sil(String musteriId) boolean
+        +ara(String tcKimlik) Musteri
+        +tumMusteriler() List~Musteri~
+        +siraliListele() List~Musteri~
+    }
+
+    class SatisKuyrugu {
+        -Queue~Satis~ bekleyenSatislar
+        -int kapasite
+        +satisEkle(Satis satis) void
+        +siradakiSatis() Satis
+        +bekleyenSayisi() int
+        +tumBekleyenler() List~Satis~
+    }
+
+    class EkspertizYigini {
+        -Stack~Ekspertiz~ ekspertizler
+        +ekle(Ekspertiz ekspertiz) void
+        +sonEkspertiz() Ekspertiz
+        +geriAl() Ekspertiz
+        +getBoyut() int
+    }
+
+    %% ==================== MANAGER / SERVICE CLASSES ====================
+    class AracYonetimi {
+        -AracListesi aracListesi
+        -static AracYonetimi instance
+        +static getInstance() AracYonetimi
+        +aracEkle(Arac arac) void
+        +aracSil(String aracId) boolean
+        +aracAra(String kriter) List~Arac~
+        +aracGuncelle(String aracId, Arac yeniArac) boolean
+        +stokRaporu() String
+        +markaIstatistik() Map~String, Integer~
+    }
+
+    class MusteriYonetimi {
+        -MusteriAgaci musteriAgaci
+        -static MusteriYonetimi instance
+        +static getInstance() MusteriYonetimi
+        +musteriEkle(Musteri musteri) void
+        +musteriSil(String musteriId) boolean
+        +musteriAra(String tcKimlik) Musteri
+        +tumMusterileriGetir() List~Musteri~
+    }
+
+    class SatisYonetimi {
+        -List~Satis~ satislar
+        -SatisKuyrugu bekleyenSatislar
+        -static SatisYonetimi instance
+        +static getInstance() SatisYonetimi
+        +satisYap(Satis satis) boolean
+        +satisIptal(String satisId) boolean
+        +gunlukRapor(LocalDate tarih) String
+        +aylikRapor(int ay, int yil) String
+        +toplamKar() double
+    }
+
+    class EkspertizYonetimi {
+        -Map~String, List~Ekspertiz~~ aracEkspertizleri
+        -EkspertizYigini sonEkspertizler
+        -static EkspertizYonetimi instance
+        +static getInstance() EkspertizYonetimi
+        +ekspertizEkle(Ekspertiz ekspertiz) void
+        +ekspertizGetir(String aracId) List~Ekspertiz~
+        +sonEkspertizGetir(String aracId) Ekspertiz
+    }
+
+    class BildirimSistemi {
+        -List~SigortaBilgisi~ sigortalar
+        -List~MuayeneBilgisi~ muayeneler
+        -static BildirimSistemi instance
+        +static getInstance() BildirimSistemi
+        +sigortaKontrol() List~SigortaBilgisi~
+        +muayeneKontrol() List~MuayeneBilgisi~
+        +yaklaşanTarihler(int gun) List~String~
+        +bildirimGonder(String mesaj) void
+    }
+
+    class RaporlayiciServis {
+        -SatisYonetimi satisYonetimi
+        -AracYonetimi aracYonetimi
+        +gelirGiderRaporu(LocalDate baslangic, LocalDate bitis) String
+        +enCokSatilanMarka() String
+        +calisanPerformansRaporu() String
+        +stokDegerRaporu() double
+    }
+
+    %% ==================== MAIN ====================
+    class GaleriUygulamasi {
+        -AracYonetimi aracYonetimi
+        -MusteriYonetimi musteriYonetimi
+        -SatisYonetimi satisYonetimi
+        -EkspertizYonetimi ekspertizYonetimi
+        -BildirimSistemi bildirimSistemi
+        -RaporlayiciServis raporlayici
+        -Scanner scanner
+        +static main(String[] args) void
+        +anaMenu() void
+        +aracMenusu() void
+        +musteriMenusu() void
+        +satisMenusu() void
+        +ekspertizMenusu() void
+        +raporMenusu() void
+    }
+
+    %% ==================== RELATIONSHIPS ====================
+    %% Inheritance
+    Arac <|-- Otomobil
+    Arac <|-- SUV
+    Arac <|-- Ticari
+    Arac <|-- Motosiklet
+    Kisi <|-- Musteri
+    Kisi <|-- Calisan
+
+    %% Interface Implementation
+    Aranabilir <|.. AracYonetimi
+    Aranabilir <|.. MusteriYonetimi
+    Raporlanabilir <|.. SatisYonetimi
+    Raporlanabilir <|.. Ekspertiz
+    Karsilastirabilir <|.. Arac
+
+    %% Enum Usage
+    Arac --> AracDurumu
+    Arac --> YakitTipi
+    Arac --> VitesTipi
+    Ekspertiz --> HasarSeviyesi
+
+    %% Associations
+    Ekspertiz --> Arac : inceler
+    Ekspertiz --> Calisan : yapan
+    Satis --> Arac : satilan
+    Satis --> Musteri : alici
+    Satis --> Calisan : satan
+    SigortaBilgisi --> Arac : sigortalanan
+    MuayeneBilgisi --> Arac : muayeneEdilen
+    Musteri --> Arac : ilgilenir
+
+    %% Composition / Aggregation
+    AracYonetimi *-- AracListesi
+    MusteriYonetimi *-- MusteriAgaci
+    SatisYonetimi *-- SatisKuyrugu
+    EkspertizYonetimi *-- EkspertizYigini
+
+    %% Manager Dependencies
+    GaleriUygulamasi --> AracYonetimi
+    GaleriUygulamasi --> MusteriYonetimi
+    GaleriUygulamasi --> SatisYonetimi
+    GaleriUygulamasi --> EkspertizYonetimi
+    GaleriUygulamasi --> BildirimSistemi
+    GaleriUygulamasi --> RaporlayiciServis
+    RaporlayiciServis --> SatisYonetimi
+    RaporlayiciServis --> AracYonetimi
+    BildirimSistemi --> SigortaBilgisi
+    BildirimSistemi --> MuayeneBilgisi
