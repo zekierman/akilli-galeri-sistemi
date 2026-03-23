@@ -5,7 +5,9 @@ Galeri yönetiminde tam dijital dönüşüm sağlayan; araç bilgileri, eksperti
 
 ## 📄 Dökümantasyon
 Proje ile ilgili detaylı teknik belgelere ve analizlere aşağıdaki bağlantılardan ulaşabilirsiniz:
-* **[Proje Fikri Belgesi](https://github.com/zekierman/akilli-galeri-sistemi/blob/main/docs/proje-fikri.pdf)**
+* **[Proje Fikri Belgesi](docs/proje-fikri.pdf)**
+* **[Proje Analiz Raporu](docs/Akilli_Oto_Galeri_Proje_Analiz_Raporu.pdf)**
+* **[UML Sınıf Diyagramı (Mermaid)](docs/uml_sinif_diyagrami.txt)**
 ## 🛠️ Teknik Altyapı
 * **Programlama Dili:** Java
 * **Sürüm Kontrol:** Git & GitHub
