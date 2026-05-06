@@ -11,8 +11,7 @@ import java.time.LocalDateTime;
  * <p>
  * <b>Mimari değişiklik:</b>
  * <ul>
- *   <li>PDR v1.0'da satışlar {@code SatisKuyrugu} (FIFO Queue) yapısında
- *       tutuluyordu. Yeni mimaride satışlar PostgreSQL tablosunda kalıcı
+ *       Bu mimaride satışlar PostgreSQL tablosunda kalıcı
  *       saklanır; FIFO sırası {@code satis_tarihi} üzerinde
  *       {@code ORDER BY} indeksi ile elde edilir.</li>
  *   <li>{@link ManyToOne} ilişkileri ile {@link Arac}, {@link Musteri} ve
