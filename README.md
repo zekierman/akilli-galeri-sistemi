@@ -15,7 +15,6 @@
     <a href="#"><img src="https://img.shields.io/badge/Data_Structures-Custom_Implementations-22c55e?style=for-the-badge" alt="Custom Structures"></a>
     <br>
     <a href="https://github.com/zekierman/akilli-galeri-sistemi/commits/main"><img src="https://img.shields.io/badge/Maintenance-Active-brightgreen?style=flat-square" alt="Maintenance"></a>
-    <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=flat-square" alt="License"></a>
   </p>
 
   <p>
