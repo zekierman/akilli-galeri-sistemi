@@ -1,37 +1,228 @@
-# 🚗 Akıllı Oto Galeri Sistemi 
-Galeri yönetiminde tam dijital dönüşüm sağlayan; araç bilgileri, ekspertiz detayları ve müşteri kayıtlarını merkezi bir sistemde toplayan Java tabanlı otomasyon projesidir.
+<div align="center">
+
+
+  <h1>Akıllı Oto Galeri Sistemi (AOGS)</h1>
+
+  <p>
+    <b>Otomotiv sektörü için tasarlanmış, sıfır harici bağımlılık ilkesiyle geliştirilmiş, yüksek performanslı ve tam kapsamlı kurumsal galeri yönetim otomasyonu.</b>
+  </p>
+
+  <!-- Badges -->
+  <p>
+    <a href="https://www.java.com/"><img src="https://img.shields.io/badge/Java-17%2B-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java"></a>
+    <a href="#"><img src="https://img.shields.io/badge/GUI-Java_Swing-007396?style=for-the-badge&logo=java&logoColor=white" alt="Swing"></a>
+    <a href="#"><img src="https://img.shields.io/badge/Architecture-Clean_Architecture-4B0082?style=for-the-badge" alt="Architecture"></a>
+    <a href="#"><img src="https://img.shields.io/badge/Data_Structures-Custom_Implementations-22c55e?style=for-the-badge" alt="Custom Structures"></a>
+    <br>
+    <a href="https://github.com/zekierman/akilli-galeri-sistemi/commits/main"><img src="https://img.shields.io/badge/Maintenance-Active-brightgreen?style=flat-square" alt="Maintenance"></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=flat-square" alt="License"></a>
+  </p>
+
+  <p>
+    <a href="#proje-özeti">Proje Özeti</a> •
+    <a href="#mimari-ve-veri-yapıları">Mimari</a> •
+    <a href="#kurulum-ve-dağıtım">Kurulum</a> •
+    <a href="#resmi-dokümantasyonlar">Dokümantasyon</a>
+  </p>
+
+</div>
 
 ---
 
-## 📄 Dökümantasyon
-Proje ile ilgili detaylı teknik belgelere ve analizlere aşağıdaki bağlantılardan ulaşabilirsiniz:
-* **[Proje Fikri Belgesi](docs/proje-fikri.pdf)**
-* **[Proje Analiz Raporu](docs/Akilli_Oto_Galeri_Proje_Analiz_Raporu.pdf)**
-* **[UML Sınıf Diyagramı (Mermaid)](docs/uml_sinif_diyagrami.txt)**
-## 🛠️ Teknik Altyapı
-* **Programlama Dili:** Java
-* **Sürüm Kontrol:** Git & GitHub
-## 🚀 Karşılaşılan Sorunlar ve Çözümler (Problem Statement)
-Geleneksel oto galeri yönetimindeki verimsizlikleri ortadan kaldırmayı hedefleyen bu proje, şu temel sorunlara çözüm sunmaktadır:
+## Proje Özeti
 
-* **Operasyonel Karmaşa ve Veri Dağınıklığı:** * *Sorun:* Verilerin kağıt, Excel veya ajandada tutulmasıyla oluşan veri kaybı.
-  * *Çözüm:* Tüm süreçleri tek merkezde toplayan dijital otomasyon ile manuel kayıt zorunluluğunu kaldırma.
-* **Ekspertiz Süreçlerinin Takip Zorluğu:** * *Sorun:* Hasar durumlarının (boyalı parça, değişen kaput vb.) şeffaf yönetilememesi.
-  * *Çözüm:* Dijital Ekspertiz Takibi ile görsel hasar analizi ve araç geçmişini kayıt altına alma.
-* **Stok ve Satış Yönetimi Eksikliği:** * *Sorun:* İlandaki ve satılan araçların anlık izlenememesi nedeniyle yavaşlayan satış süreçleri.
-  * *Çözüm:* Stok ve Satış modülü ile araç durumlarını tek panelden anlık takip etme.
-* **Kritik Tarihlerin Takibi (Sigorta ve Muayene):** * *Sorun:* Manuel takip nedeniyle unutulan muayene ve sigorta tarihlerinin yarattığı aksaklıklar.
-  * *Çözüm:* Ofis dışı anlık kontrol özelliği ile bu tarihlerin sistem tarafından otomatik takibi.
-* **Güvensiz Veri Saklama ve Müşteri İlişkileri:** * *Sorun:* Müşteri ve araç eşleşmelerindeki düzensizlik nedeniyle taleplere yavaş yanıt verilmesi.
-  * *Çözüm:* Müşteri Yönetimi modülü ile güvenli veri tabanı ve hızlı erişim.
-## 👥 Geliştirici Ekibi
-Bu proje, üniversite grup ödevi kapsamında aşağıdaki ekip tarafından geliştirilmektedir:
+**Akıllı Oto Galeri Sistemi (AOGS)**, araç alım-satım süreçlerini, ekspertiz kayıtlarını, müşteri ilişkilerini (CRM) ve finansal verileri tek bir merkezden yönetmek üzere tasarlanmış kurumsal bir masaüstü yazılımıdır. 
 
-* **Zeki Erman** - 25100011462 - [GitHub Profili](https://github.com/zekierman)
-* **Orhan Akman** - 24100011013 - [GitHub Profili](https://github.com/orhaan2005-netizen)
-* **Emre Kuzal** - 24100011003 - [GitHub Profili](https://github.com/emrkzl44)
-* **Osman Berat Paşa**- 24100011048 - [GitHub Profili](https://github.com/Heyyyoooo)
-* **Halil İbrahim Dinç**- 23100011047 - [GitHub Profili](https://github.com/dinchalilibrahim)
-* **Eray Gök**- 24100011027 - [GitHub Profili](https://github.com/erygk26)
+Geleneksel, kağıt veya basit tablolama (Excel vb.) yazılımlarına dayalı yönetim sistemlerinin aksine AOGS, **veri güvenliğini, operasyonel hızı ve süreç şeffaflığını** maksimize etmeyi hedefler. Projenin mühendislik açısından en güçlü yönü, standart Java Collections Framework kullanılmadan **tamamen sıfırdan yazılmış (custom) veri yapıları** üzerine inşa edilmiş olmasıdır.
+
+## Temel Yetenekler ve Modüller
+
+| Modül | Açıklama |
+| :--- | :--- |
+| **Araç Envanter & Stok Yönetimi** | Araçların marka, model, yıl, km, donanım ve anlık stok durumlarının uçtan uca yönetimi. |
+| **Dijital Ekspertiz Analizi** | Araç parçalarındaki (boya, değişen, lokal boya) hasar durumlarının görsel işaretleme ile dijital kaydı. |
+| **Müşteri İlişkileri (CRM)** | Alıcı ve satıcı veritabanı oluşturma, geçmiş satışların takibi ve müşteri bazlı analiz. |
+| **Finans ve Muhasebe** | Alış-satış marjlarının hesaplanması, gelir-gider takibi ve anlık kar/zarar durum raporlaması. |
+| **Akıllı Asistan (Bildirim)** | Muayene, kasko, sigorta ve vergi ödeme tarihlerini otomatik olarak takip eden hatırlatıcı servis. |
+| **Gelişmiş Raporlama** | Belirli tarih aralıklarında stok hareketleri ve finansal durumlara dair detaylı veri dökümleri. |
+
 ---
-*Bu proje Necmettin Erbakan Üniversitesi Bilgisayar Mühendisliği dersi projesidir.*
+
+## Mimari ve Veri Yapıları
+
+AOGS, endüstri standartlarında bir yazılım mimarisine sahip olmakla birlikte, algoritmik verimlilik göz önünde bulundurularak tasarlanmıştır. **`java.util.*` koleksiyon kütüphaneleri (List, Set, Map vb.) bilerek kullanılmamış, projenin tamamı özel veri yapılarıyla örülmüştür.**
+
+### Kullanılan Veri Yapıları:
+- **`Custom LinkedList:`** Araç stok listeleri ve dinamik boyut gerektiren veri kümeleri için.
+- **`Binary Search Tree (BST):`** Müşteri kayıtlarında ve plaka/şasi no tabanlı aramalarda üst düzey arama hızı elde etmek için.
+- **`Queue & Stack:`** İşlem geçmişi (Undo/Redo mantığı) ve asenkron bildirim kuyrukları için.
+
+### Sistem Mimarisi (Mermaid)
+
+```mermaid
+graph TD
+    subgraph Frontend [Kullanıcı Arayüzü - Java Swing]
+        UI[Ana Kontrol Paneli]
+        Forms[Veri Giriş Formları]
+        Dash[Grafik & Rapor Ekranları]
+    end
+
+    subgraph BusinessLogic [İş Katmanı / Servisler]
+        InventorySvc[Stok Servisi]
+        CRMSvc[Müşteri Servisi]
+        FinanceSvc[Finans Servisi]
+        AlertSvc[Bildirim Servisi]
+    end
+
+    subgraph DataStructures [Özel Veri Yapıları]
+        LL[(LinkedList)]
+        BST[(Binary Search Tree)]
+        SQ[(Stack / Queue)]
+    end
+
+    UI --> InventorySvc
+    UI --> CRMSvc
+    Forms --> FinanceSvc
+    Dash --> AlertSvc
+
+    InventorySvc --> LL
+    CRMSvc --> BST
+    FinanceSvc --> SQ
+```
+
+---
+
+## Teknolojik Altyapı
+
+<details>
+<summary><b>Detaylı Teknoloji Listesini Gör (Tıklayın)</b></summary>
+<br>
+
+| Bileşen | Teknoloji / Yaklaşım | Tercih Nedeni |
+| :--- | :--- | :--- |
+| **Dil** | Java 17+ | Güçlü tip güvenliği, platform bağımsızlığı (WORA) |
+| **Arayüz (GUI)** | Java Swing / AWT | Native masaüstü deneyimi, dış kütüphane bağımsızlığı |
+| **Paradigma** | Nesne Yönelimli Programlama (OOP) | Kodun yeniden kullanılabilirliği ve yönetilebilirliği |
+| **Versiyon Kontrol** | Git & GitHub | Dağıtık ekip çalışması, CI/CD uyumluluğu |
+| **Dokümantasyon** | Markdown, Mermaid.js | Temiz ve sürdürülebilir proje belgelendirmesi |
+
+</details>
+
+---
+
+## Proje Hiyerarşisi
+
+Kod organizasyonu, Sorumlulukların Ayrılığı (Separation of Concerns) prensibine sadık kalınarak yapılandırılmıştır.
+
+```text
+AOGS
+ ┣ backend
+ ┃ ┣ src/main/java/com/galeri
+ ┃ ┃ ┣ config           # Yapılandırma ve ayarlar (CORS, WebMvc ayarları vb.)
+ ┃ ┃ ┣ controller       # Gelen HTTP isteklerini karşılayan API uç noktaları (Endpoints)
+ ┃ ┃ ┣ dto              # Veri Transfer Nesneleri (İstemci ve sunucu arasındaki veri formatları)
+ ┃ ┃ ┣ exception        # Projeye özel hata sınıfları ve merkezi hata yönetimi
+ ┃ ┃ ┣ model            # Veritabanı tablolarını temsil eden varlıklar (Car, User, Ekspertiz vb.)
+ ┃ ┃ ┣ repository       # Veritabanı erişim katmanı (JPA ve veritabanı sorguları)
+ ┃ ┃ ┗ service          # Çekirdek iş mantıkları ve kuralların işlendiği asıl servisler
+ ┃ ┗ pom.xml            # Maven kütüphane bağımlılıkları ve projenin inşa ayarları
+ ┃
+ ┗ frontend
+   ┣ src
+   ┃ ┣ api              # Backend ile veri alışverişini (HTTP isteklerini) yöneten modüller
+   ┃ ┣ components       # Yeniden kullanılabilir arayüz parçaları (Buton, Modal, Tablo)
+   ┃ ┣ pages            # Ana görünümler ve yönlendirmeye (routing) bağlı sayfalar
+   ┃ ┗ theme            # Tasarım dili, genel stil ayarları ve renk paletleri
+   ┣ package.json       # React proje bağımlılıkları ve çalıştırılabilir scriptler
+   ┣ tailwind.config.js # Stil için kullanılan TailwindCSS yapılandırmaları
+   ┗ vite.config.js     # Geliştirme sunucusu (dev server) ve build ayarları
+```
+
+---
+
+## Kurulum ve Dağıtım
+
+Proje bağımlılıklardan arındırıldığı için (Zero Dependency), kurulum süreci son derece basittir.
+
+### 1. Ön Koşullar
+Sisteminizde **Java Development Kit (JDK) 17** veya daha güncel bir sürümünün kurulu olduğundan ve `JAVA_HOME` ortam değişkeninin doğru ayarlandığından emin olun.
+```bash
+java -version
+```
+
+
+### 2. İndirme ve Derleme
+Terminal veya Komut İstemcisi üzerinden aşağıdaki adımları sırasıyla uygulayın:
+
+```bash
+# Projeyi lokal bilgisayarınıza çekin
+git clone https://github.com/zekierman/akilli-galeri-sistemi.git
+
+# Proje klasörüne giriş yapın
+cd akilli-galeri-sistemi
+```
+
+### 3. Veritabanı Yapılandırması (PostgreSQL)
+Projenin verileri saklayabilmesi için yerel makinenizde bir PostgreSQL veritabanı bulunmalıdır:
+
+**Veritabanı Oluşturma:** pgAdmin 4 veya tercih ettiğiniz bir araç üzerinden aogs adında bir veritabanı (database) oluşturun.
+
+**Bağlantı Ayarları:** src/main/resources/application.properties dosyasını açarak aşağıdaki alanları kendi yerel veritabanı bilgilerinizle güncelleyin:
+
+```cmd
+spring.datasource.username=postgres
+spring.datasource.password=kendi_sifreniz
+```
+
+### 4. Çalıştırma
+**Windows Kullanıcıları:**
+Kök dizinde bulunan `run.bat` dosyasına çift tıklayabilir veya terminal üzerinden çalıştırabilirsiniz:
+```cmd
+run.bat
+```
+
+**IDE Üzerinden (Önerilen):**
+Projeyi _IntelliJ IDEA, Eclipse veya VS Code_ üzerinden açarak ana sınıf üzerinden projeyi doğrudan çalıştırabilirsiniz.
+
+
+## Resmi Dokümantasyonlar
+
+Akademik ve mühendislik dokümantasyonlarımıza aşağıdan erişebilirsiniz:
+- **[Sistem Gereksinimleri ve Fikir Belgesi](docs/proje-fikri.pdf)**
+- **[Detaylı Proje Analiz Raporu (IEEE 830 Standartları)](docs/Akilli_Oto_Galeri_Proje_Analiz_Raporu.pdf)**
+- **[UML Sınıf ve İlişki Diyagramı](docs/uml_sinif_diyagrami.txt)**
+- **[Tasarım Raporu](docs/AOGS_TASARIM_RAPORU.pdf)**
+
+---
+
+## Mühendislik ve Geliştirme Ekibi
+
+Proje, **Necmettin Erbakan Üniversitesi Bilgisayar Mühendisliği** bölümü işbirliğiyle geliştirilmiştir.
+
+| Geliştirici | GitHub Profili | Temel Sorumluluk Alanı |
+| :--- | :--- | :--- |
+| **Zeki Erman** | [@zekierman](https://github.com/zekierman) | Proje Yönetimi, Çekirdek Mimari (Backend) |
+| **Orhan Akman** | [@orhaan2005-netizen](https://github.com/orhaan2005-netizen) | UI/UX Tasarımı, Frontend Entegrasyonu |
+| **Emre Kuzal** | [@emrkzl44](https://github.com/emrkzl44) | Veri Yapıları Geliştirimi, Veri Katmanı |
+| **Osman Berat Paşa** | [@Heyyyoooo](https://github.com/Heyyyoooo) | Finans, Muhasebe ve Satış Modülleri |
+| **Halil İbrahim Dinç** | [@dinchalilibrahim](https://github.com/dinchalilibrahim) | Müşteri İlişkileri (CRM) ve Veri Raporlama |
+| **Eray Gök** | [@erygk26](https://github.com/erygk26) | Kalite Güvence (QA), Hata Ayıklama (Testing) |
+
+---
+
+## Açık Kaynak ve Katkı Süreci
+
+Bu proje açık kaynaklıdır ve topluluğun katkılarına açıktır. Katkıda bulunmak için standart Git Flow prosedürlerini izleyebilirsiniz:
+
+1. Bu depoyu (Fork) kopyalayın.
+2. Üzerinde çalışacağınız özellik için bir dal oluşturun (`git checkout -b feature/MukemmelOzellik`).
+3. Değişikliklerinizi kalıcı hale getirin (`git commit -m 'feat: Mükemmel özellik eklendi'`).
+4. Dalınızı uzak sunucuya gönderin (`git push origin feature/MukemmelOzellik`).
+5. Bir Birleştirme İsteği (Pull Request) oluşturun.
+
+<div align="center">
+  <br>
+  <img src="https://img.shields.io/badge/Made_with-Java-%23ED8B00?style=for-the-badge&logo=java&logoColor=white" alt="Made with Java">
+  <br>
+  <p><i>Akıllı Oto Galeri Sistemi © 2026. Tüm hakları saklıdır. Eğitim ve akademik amaçlarla açık kaynaklı olarak paylaşılmıştır.</i></p>
+</div>
