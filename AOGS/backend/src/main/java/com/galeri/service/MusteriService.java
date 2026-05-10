@@ -4,6 +4,7 @@ import com.galeri.exception.IsKuraliException;
 import com.galeri.model.Musteri;
 import com.galeri.repository.MusteriRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -118,11 +119,29 @@ public class MusteriService {
      * @param musteriId silinecek müşterinin ID'si
      * @throws EntityNotFoundException kayıt bulunamazsa
      */
+    /**
+     * Müşteriyi sistemden siler.
+     *
+     * <p>Müşteriye ait aktif satış kayıtları varsa silme işlemi reddedilir.
+     * DB constraint ihlali {@link IsKuraliException}'a dönüştürülerek
+     * istemciye anlamlı bir {@code 400 Bad Request} döndürülür.
+     *
+     * @param musteriId silinecek müşterinin ID'si
+     * @throws EntityNotFoundException kayıt bulunamazsa
+     * @throws IsKuraliException ilişkili satış kaydı mevcutsa
+     */
     @Transactional
     public void musteriSil(String musteriId) {
         if (!musteriRepository.existsById(musteriId)) {
             throw new EntityNotFoundException("Müşteri bulunamadı: " + musteriId);
         }
-        musteriRepository.deleteById(musteriId);
+        try {
+            musteriRepository.deleteById(musteriId);
+            musteriRepository.flush();
+        } catch (DataIntegrityViolationException e) {
+            throw new IsKuraliException(
+                "Bu müşteriye ait satış kayıtları mevcut olduğu için silinemez. " +
+                "Önce ilgili satış kayıtlarını iptal edin.");
+        }
     }
 }
