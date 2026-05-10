@@ -43,6 +43,14 @@ export default function SigortaMuayene() {
   const sigortaKaydet = async (e) => {
     e.preventDefault();
     setHata(null); setBasari(null);
+
+    // Tarih doğrulama: bitiş tarihi başlangıçtan sonra olmalı (fixes #9)
+    if (sForm.baslangicTarihi && sForm.bitisTarihi &&
+        new Date(sForm.bitisTarihi) <= new Date(sForm.baslangicTarihi)) {
+      setHata('Bitiş tarihi başlangıç tarihinden sonra olmalıdır.');
+      return;
+    }
+
     try {
       const payload = {
         ...sForm,
@@ -68,6 +76,14 @@ export default function SigortaMuayene() {
   const muayeneKaydet = async (e) => {
     e.preventDefault();
     setHata(null); setBasari(null);
+
+    // Sonraki muayene tarihi mevcut muayene tarihinden sonra olmalı
+    if (mForm.muayeneTarihi && mForm.sonrakiMuayeneTarihi &&
+        new Date(mForm.sonrakiMuayeneTarihi) <= new Date(mForm.muayeneTarihi)) {
+      setHata('Sonraki muayene tarihi, muayene tarihinden sonra olmalıdır.');
+      return;
+    }
+
     try {
       const payload = {
         ...mForm,
