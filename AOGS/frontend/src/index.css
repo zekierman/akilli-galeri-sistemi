@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+    @apply text-aogs-metin;
+  }
+}
+
+@layer components {
+  .aogs-buton-birincil {
+    @apply bg-aogs-birincil hover:bg-aogs-ikincil text-white font-medium
+           px-4 py-2 rounded-lg transition-colors shadow-sm;
+  }
+  .aogs-buton-ikincil {
+    @apply bg-white hover:bg-aogs-arkaplan text-aogs-birincil border border-aogs-kenar
+           font-medium px-4 py-2 rounded-lg transition-colors;
+  }
+  .aogs-input {
+    @apply w-full px-3 py-2 border border-aogs-kenar rounded-lg
+           focus:outline-none focus:ring-2 focus:ring-aogs-birincil
+           focus:border-transparent bg-white;
+  }
+  .aogs-kart {
+    @apply bg-aogs-kart border border-aogs-kenar rounded-xl shadow-aogs-kart p-6;
+  }
+  .aogs-rozet {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+}
