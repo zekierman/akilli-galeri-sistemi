@@ -180,9 +180,6 @@ Kök dizinde bulunan `run.bat` dosyasına çift tıklayabilir veya terminal üze
 run.bat
 ```
 
-**IDE Üzerinden (Önerilen):**
-Projeyi _IntelliJ IDEA, Eclipse veya VS Code_ üzerinden açarak ana sınıf üzerinden projeyi doğrudan çalıştırabilirsiniz.
-
 
 ## Resmi Dokümantasyonlar
 
@@ -196,16 +193,14 @@ Akademik ve mühendislik dokümantasyonlarımıza aşağıdan erişebilirsiniz:
 
 ## Mühendislik ve Geliştirme Ekibi
 
-Proje, **Necmettin Erbakan Üniversitesi Bilgisayar Mühendisliği** bölümü işbirliğiyle geliştirilmiştir.
-
-| Geliştirici | GitHub Profili | Temel Sorumluluk Alanı |
-| :--- | :--- | :--- |
-| **Zeki Erman** | [@zekierman](https://github.com/zekierman) | Proje Yönetimi, Çekirdek Mimari (Backend) |
-| **Orhan Akman** | [@orhaan2005-netizen](https://github.com/orhaan2005-netizen) | UI/UX Tasarımı, Frontend Entegrasyonu |
-| **Emre Kuzal** | [@emrkzl44](https://github.com/emrkzl44) | Veri Yapıları Geliştirimi, Veri Katmanı |
-| **Osman Berat Paşa** | [@Heyyyoooo](https://github.com/Heyyyoooo) | Finans, Muhasebe ve Satış Modülleri |
-| **Halil İbrahim Dinç** | [@dinchalilibrahim](https://github.com/dinchalilibrahim) | Müşteri İlişkileri (CRM) ve Veri Raporlama |
-| **Eray Gök** | [@erygk26](https://github.com/erygk26) | Kalite Güvence (QA), Hata Ayıklama (Testing) |
+| Geliştirici | GitHub Profili | Görev / Sorumlu Modül |
+|---|---|---|
+| Emre Kuzal | [@emrkzl44](https://github.com/emrkzl44) | **Proje Yöneticisi** · Satış & Raporlama Modülleri (Backend) |
+| Zeki Erman | [@zekierman](https://github.com/zekierman) | Araç Modülü (Backend) · Frontend: Dashboard, Araç Listesi, Araç Ekleme, Raporlama |
+| Orhan Akman | [@orhaan2005-netizen](https://github.com/orhaan2005-netizen) | Müşteri Modülü (Backend) · Frontend: Müşteri Yönetimi, Satış İşlemi, Sigorta/Muayene, Layout |
+| Osman Berat Paşa | [@Heyyyoooo](https://github.com/Heyyyoooo) | Ekspertiz Modülü (Backend) |
+| Halil İbrahim Dinç | [@dinchalilibrahim](https://github.com/dinchalilibrahim) | Bildirim & Sigorta/Muayene Modülleri (Backend) |
+| Eray Gök | [@erygk26](https://github.com/erygk26) | Entegrasyon & Test (api/client.js, CorsConfig, JUnit, dokümantasyon) |
 
 ---
 
