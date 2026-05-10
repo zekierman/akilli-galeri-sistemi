@@ -26,6 +26,7 @@ export default function SatisIslemi() {
   const [musteriler, setMusteriler] = useState([]);
   const [calisanlar, setCalisanlar] = useState([]);
 
+  const [gonderiyor, setGonderiyor] = useState(false);
   const [form, setForm] = useState({
     aracId: '', musteriTc: '', calisanId: '',
     satisFiyati: '', odemeSekli: 'Nakit'
@@ -58,6 +59,16 @@ export default function SatisIslemi() {
   const submit = async (e) => {
     e.preventDefault();
     setHata(null); setBasari(null);
+
+    // Fiyat doğrulama: satış fiyatı alış fiyatının altında olamaz (fixes #11)
+    const seciliArac = araclar.find(a => a.aracId === form.aracId);
+    if (seciliArac && parseFloat(form.satisFiyati) < seciliArac.alisFiyati) {
+      const zarar = (seciliArac.alisFiyati - parseFloat(form.satisFiyati)).toLocaleString('tr-TR');
+      setHata(`Satış fiyatı alış fiyatının (${formatTl(seciliArac.alisFiyati)}) altında olamaz. Zarar: ${zarar} ₺`);
+      return;
+    }
+
+    setGonderiyor(true); // Çift tıklamayı engelle (fixes #12)
     try {
       const yeniSatis = await satisApi.yap({
         ...form,
@@ -70,6 +81,8 @@ export default function SatisIslemi() {
       yenile();
     } catch (err) {
       setHata(err.message);
+    } finally {
+      setGonderiyor(false);
     }
   };
 
@@ -110,7 +123,9 @@ export default function SatisIslemi() {
               <Select etiket="Ödeme Şekli"
                       secenekler={ODEME_SECENEKLERI}
                       value={form.odemeSekli} onChange={guncelle('odemeSekli')} />
-              <Buton type="submit">Satışı Tamamla</Buton>
+              <Buton type="submit" disabled={gonderiyor}>
+                {gonderiyor ? 'Kaydediliyor...' : 'Satışı Tamamla'}
+              </Buton>
             </form>
           </Kart>
         </div>
